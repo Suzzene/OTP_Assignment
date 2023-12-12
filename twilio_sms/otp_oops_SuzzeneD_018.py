@@ -27,7 +27,7 @@ class MobileService(CommunicationService):
         if self.validate_mobile(target_mobile):
             target_mobile = "+91" + target_mobile
             message = self.client.messages.create(
-                body=f"Your OTP is {otp}. Valid for next 15 minutes.",
+                body=f"Your OTP is {otp}. Valid for next 10 minutes.",
                 from_=self.sender_email,
                 to=target_mobile
             )
@@ -44,7 +44,7 @@ class EmailService(CommunicationService):
 
     def send_otp(self, receiver_email, otp):
         if self.validate_email(receiver_email):
-            body = f"Your OTP is {otp}. Valid for next 15 minutes."
+            body = f"Your OTP is {otp}. Valid for next 10 minutes."
             server = smtplib.SMTP('smtp.gmail.com', 587)
             server.starttls()
             server.login(self.sender_email, self.sender_password)
